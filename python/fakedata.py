@@ -1,8 +1,8 @@
 import scipy.io
 import pickle
-def getData():
+def getData(points):
   res = []
-  for i in range(15):
+  for i in range(points):
     print(i)
     i = i + 1
     filename = '../matlab/tx' + str(i) + '.mat'
@@ -20,6 +20,6 @@ def getData():
   return res
 
 if __name__=='__main__':
-  data = getData()
+  data = getData(15)
   with open('test.pkl','wb') as f:
     pickle.dump(data, f)
