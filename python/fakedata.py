@@ -4,19 +4,20 @@ import scipy.io
 def getData():
   res = []
   for i in range(15):
+    print(i)
     i = i + 1
     filename = '../matlab/tx' + str(i) + '.mat'
     mat = scipy.io.loadmat(filename)
     waveform = mat['x']
-    xy = []
-    for wave in waveform:
+    x = []
+
+    for j, wave in enumerate(waveform):
+      if(j%10000==0 and j!= 0):
+        res.append((x, i))
+        x = []
       real = wave.real[0]
       imag = wave.imag[0]
-      xy.append([real, imag])
-    #for j in range(len(waveform)):
-    #print(type (waveform[0][0].real))
-    #print(type (waveform[0][0].imag))
-    res.append(xy)
+      x.append([real, imag])
   return res
 
 if __name__=='__main__':
