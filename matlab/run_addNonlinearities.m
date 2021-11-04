@@ -1,8 +1,8 @@
 clear all
 close all
 num_Txrs = 15;
-flag_debug = 1;
-num_samples = 1e4;
+flag_debug = 0;
+num_samples = 1e6;
 %% input parameters for nonlinearities: phaseOffset, freqOffset, phNzFreqOff, ampGain, sampRate
 % input parameter:   Range assumed reasonable (units)
 % phaseOffset:       0-90; (degrees)
@@ -73,7 +73,7 @@ for i = 1:num_Txrs
     
     %% save off each signal appropriately
     X_nl{i} = x_nl;
-    x=x_nl
+    x=x_nl;
     filename = ['tx',num2str(i),'.mat']
     tx_phaseOffset = phaseOffset(i);
     tx_freqOffset = freqOffset(i); 
