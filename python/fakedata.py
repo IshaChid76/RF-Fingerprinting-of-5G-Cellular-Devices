@@ -1,6 +1,5 @@
-from typing import Reversible
 import scipy.io
-
+import pickle
 def getData():
   res = []
   for i in range(15):
@@ -21,4 +20,6 @@ def getData():
   return res
 
 if __name__=='__main__':
-  getData()
+  data = getData()
+  with open('test.pkl','wb') as f:
+    pickle.dump(data, f)
