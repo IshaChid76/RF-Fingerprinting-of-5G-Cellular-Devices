@@ -7,23 +7,10 @@ import random
 from fakedata import getData
 
 if __name__=='__main__':
-  points = 15
-  data = getData(points)
-  x = []
-  y = []
-  for part in data:
-    xToAdd = []
-    for xval in part[0]:
-      for xvalpart in xval:
-        xToAdd.append(xvalpart)
-    x.append(xToAdd)
-    y.append(part[1])
+  points = 3
+  x, y = getData(points)
   scaler = StandardScaler()
-  x = np.array(x)
-  temp = list(zip(x, y))
-  random.seed(4)
-  random.shuffle(temp)
-  x, y = zip(*temp)
+
   x_train, x_test = np.split(x, [int(len(x)*0.8)])
   y_train, y_test = np.split(y, [int(len(x)*0.8)])
   clf = make_pipeline(StandardScaler(),SVC(gamma='auto',random_state=0)).fit(x_train, y_train)
