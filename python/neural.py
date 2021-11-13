@@ -1,22 +1,19 @@
-from keras.models import Sequential
-from keras.layers import Dense
+'''from keras.clfs import Sequential
+from keras.layers import Dense'''
+from sklearn.neural_network import MLPClassifier
 
-from fakedata import getData
-
-model = Sequential()
-model.add(Dense(60, input_dim=2, activation='relu'))
-model.add(Dense(30, activation='relu'))
-model.add(Dense(1, activation='sigmoid'))
-
-model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+import numpy as np
 
 
-if __name__=='__main__':
-  data = getData()
-  X = []
-  y = []
-  for (i, waveform) in list(enumerate(data)):
-    for wave in waveform:
-      X.append(wave)
-      y.append(i)
-  model.fit(X, y, epochs=150, batch_size=10)
+
+
+def neural(x_train, y_train, points):
+  '''clf = Sequential()
+  clf.add(Dense(10000, input_dim=20000, activation='relu'))
+  clf.add(Dense(points*100, activation='relu'))
+  clf.add(Dense(points, activation='sigmoid'))
+
+  clf.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])'''
+  clf = MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(points**3, points), random_state=1)
+  clf.fit(x_train, y_train)
+  return clf
