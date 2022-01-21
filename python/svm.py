@@ -8,8 +8,8 @@ def svm(x_train, y_train, kernel):
   # kernel = 'poly', degree=degree
   clf = None
   if kernel == 'rbf':
-    clf = make_pipeline(scaler,SVC(gamma='auto',random_state=0))
+    clf = make_pipeline(scaler,SVC(gamma='auto'))
   else:
-    clf = make_pipeline(scaler,SVC(gamma='auto',kernel=kernel, degree=degree, random_state=0))
+    clf = make_pipeline(scaler,SVC(gamma='auto',kernel=kernel, degree=degree))
   clf.fit(x_train, y_train)
   return clf
